@@ -72,7 +72,7 @@ func displayBlocks(terminal Terminal, s tcell.Screen) {
 	}
 }
 
-func Display(terminal Terminal) {
+func Display(terminal Terminal) bool {
 	// Clear the TTY
 	clear.ClearTTY()
 	//vaultTec.EarlyBoot()
@@ -110,7 +110,7 @@ func Display(terminal Terminal) {
 
 			if ev.Key() == tcell.KeyEscape {
 				s.Fini()
-				os.Exit(0)
+				return true
 			}
 			//refreshSelection(s, terminal, false)
 			switch ev.Key() {
@@ -145,7 +145,7 @@ func Display(terminal Terminal) {
 						inputBox.pushList(terminal, s)
 						sleeper.Sleep(3000)
 						s.Fini()
-						os.Exit(0)
+						return true
 					} else {
 						wrongPassword := cursor.Cell.Content
 						wrongPasswordInfo := terminal.Passwords.Content[wrongPassword]
