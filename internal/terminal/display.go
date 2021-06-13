@@ -99,6 +99,7 @@ func Display(terminal Terminal) bool {
 	inputBox := InputBox{}
 	inputBox.Init(terminal)
 	for {
+
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventResize:
 			s.Sync()
